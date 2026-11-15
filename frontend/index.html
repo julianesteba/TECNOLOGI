@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio | Tecnologi</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+
+      <div class="logo">
+        <a href="index.html">Tecnologi</a>
+      </div>
+
+      <div class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="productos.html">Productos</a>
+        <a href="categorias.html">Categorías</a>
+        <a href="buscar.html">Buscar</a>
+        <a href="carrito.html" class="cart-link">
+          🛒 Carrito (<span id="cart-count">0</span>)
+        </a>
+        <a href="login.html">Login</a>
+        <a href="registro.html">Registro</a>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+
+      <div>
+        <span class="badge">✨ Nuevos productos disponibles</span>
+
+        <h1>
+          Tecnología que <br>
+          Simplifica tu <br>
+          Vida
+        </h1>
+
+        <p>
+          Descubre los mejores productos tecnológicos con precios
+          increíbles y envío gratuito en todos los pedidos.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="categorias.html" class="btn-green">
+            Explorar productos
+          </a>
+
+          <a href="contacto.html" class="btn-outline-white">
+            Contactar
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="product-box">
+
+          <div class="icon-big">
+            <img
+              src="img/Portátil elegante con fondo abstracto.png"
+              alt="Laptop Pro M2"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+            >
+            <span style="display:none;">💻</span>
+          </div>
+
+          <p>Laptop Pro M2</p>
+          <strong>$1299</strong>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CARACTERÍSTICAS -->
+  <section class="features">
+    <div class="container features-grid">
+
+      <div class="feature">
+        <div class="icon">📦</div>
+        <div>
+          <h3>Envío gratis</h3>
+          <p>En todos los pedidos sin mínimo de compra.</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="icon">🛡️</div>
+        <div>
+          <h3>Garantía de 2 años</h3>
+          <p>Protección para tus productos tecnológicos.</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="icon">🎧</div>
+        <div>
+          <h3>Soporte 24/7</h3>
+          <p>Atención al cliente para resolver tus dudas.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRODUCTOS DESTACADOS -->
+  <section class="products">
+    <div class="container">
+
+      <h2 class="title">Productos destacados</h2>
+      <p class="subtitle">
+        Los más populares de nuestra colección.
+      </p>
+
+      <div class="products-grid" id="productos-destacados">
+        <p>Cargando productos...</p>
+      </div>
+
+      <div class="hero-buttons">
+        <a href="productos.html" class="btn-green">
+          Ver todos los productos
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+
+    <div class="footer-container">
+
+      <div class="footer-column">
+        <h2>Tecnologi</h2>
+        <p>
+          Tu tienda de confianza para los mejores productos tecnológicos.
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h3>Productos</h3>
+        <a href="categorias.html">Laptops</a>
+        <a href="categorias.html">Smartphones</a>
+        <a href="categorias.html">Audio</a>
+        <a href="categorias.html">Accesorios</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Soporte</h3>
+        <a href="help.html">Centro de ayuda</a>
+        <a href="garantia.html">Garantías</a>
+        <a href="returns.html">Devoluciones</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Legal</h3>
+        <a href="terminos.html">Términos</a>
+        <a href="privacy.html">Privacidad</a>
+        <a href="cookies.html">Cookies</a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 Tecnologi. Todos los derechos reservados.
+    </div>
+
+  </footer>
+
+  <!-- CONEXIÓN CON LA API Y CONTADOR DEL CARRITO -->
+  <script>
+
+    // Dirección de la API de Tecnologi
+    const API_URL = "http://localhost:8080/api/productos";
+
+    // Obtener la imagen según el nombre del producto
+    function obtenerImagen(producto) {
+      const nombre = (producto.nombre || "").toLowerCase();
+
+      if (nombre.includes("laptop") || nombre.includes("portátil")) {
+        return "img/Portátil elegante con fondo abstracto.png";
+      }
+
+      if (nombre.includes("smartphone") || nombre.includes("celular")) {
+        return "img/celular.png";
+      }
+
+      if (nombre.includes("auricular")) {
+        return "img/auriculares.jpg";
+      }
+
+      if (nombre.includes("smartwatch") || nombre.includes("reloj")) {
+        return "img/smartwatch.jpg";
+      }
+
+      if (nombre.includes("teclado")) {
+        return "img/teclado.png";
+      }
+
+      if (nombre.includes("monitor")) {
+        return "img/monitor.jpg";
+      }
+
+      if (nombre.includes("tablet")) {
+        return "img/tablet.jpg";
+      }
+
+      if (nombre.includes("mouse") || nombre.includes("ratón")) {
+        return "img/mouse.jpg";
+      }
+
+      return "";
+    }
+
+    // Formatear precios en pesos colombianos
+    function formatoPrecio(precio) {
+      return "$" + Number(precio || 0).toLocaleString("es-CO");
+    }
+
+    // Consultar productos en la API
+    async function cargarProductosDestacados() {
+      const contenedor = document.getElementById("productos-destacados");
+
+      try {
+        const respuesta = await fetch(API_URL);
+
+        if (!respuesta.ok) {
+          throw new Error("No fue posible consultar los productos.");
+        }
+
+        const productos = await respuesta.json();
+
+        contenedor.innerHTML = "";
+
+        if (!Array.isArray(productos) || productos.length === 0) {
+          contenedor.innerHTML = `
+            <p>No hay productos disponibles en este momento.</p>
+          `;
+          return;
+        }
+
+        // Mostrar máximo cuatro productos
+        const productosDestacados = productos.slice(0, 4);
+
+        productosDestacados.forEach((producto, index) => {
+
+          const tarjeta = document.createElement("a");
+          tarjeta.href = "productos.html";
+          tarjeta.className = "product-card";
+
+          const etiqueta = document.createElement("span");
+          etiqueta.className = "badge-product";
+
+          const etiquetas = ["Más vendido", "Nuevo", "Oferta", "Popular"];
+          etiqueta.textContent = etiquetas[index] || "Destacado";
+
+          const contenedorImagen = document.createElement("div");
+          contenedorImagen.className = "product-img";
+
+          const rutaImagen = obtenerImagen(producto);
+
+          if (rutaImagen) {
+            const imagen = document.createElement("img");
+            imagen.src = rutaImagen;
+            imagen.alt = producto.nombre || "Producto tecnológico";
+
+            imagen.onerror = function () {
+              this.style.display = "none";
+              emoji.style.display = "block";
+            };
+
+            contenedorImagen.appendChild(imagen);
+          }
+
+          const emoji = document.createElement("span");
+          emoji.style.display = rutaImagen ? "none" : "block";
+          emoji.textContent = "📦";
+
+          contenedorImagen.appendChild(emoji);
+
+          const nombre = document.createElement("h4");
+          nombre.textContent = producto.nombre || "Producto";
+
+          const precio = document.createElement("p");
+          precio.textContent = formatoPrecio(producto.precio);
+
+          tarjeta.append(
+            etiqueta,
+            contenedorImagen,
+            nombre,
+            precio
+          );
+
+          contenedor.appendChild(tarjeta);
+        });
+
+      } catch (error) {
+        console.error("Error al cargar productos:", error);
+
+        contenedor.innerHTML = `
+          <p>
+            No se pudieron cargar los productos.
+            Verifica que la API de Tecnologi esté funcionando.
+          </p>
+        `;
+      }
+    }
+
+    // Obtener carrito guardado
+    function obtenerCarrito() {
+      try {
+        return JSON.parse(localStorage.getItem("carrito")) || [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    // Actualizar contador del carrito
+    function actualizarContadorCarrito() {
+      const carrito = obtenerCarrito();
+      const contador = document.getElementById("cart-count");
+
+      if (contador) {
+        const cantidadTotal = carrito.reduce(
+          (total, producto) =>
+            total + (Number(producto.cantidad) || 1),
+          0
+        );
+
+        contador.textContent = cantidadTotal;
+      }
+    }
+
+    // Ejecutar funciones al cargar la página
+    document.addEventListener("DOMContentLoaded", () => {
+      cargarProductosDestacados();
+      actualizarContadorCarrito();
+    });
+
+  </script>
+
+</body>
+</html>

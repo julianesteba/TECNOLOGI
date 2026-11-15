@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Usuarios - Tecnologi</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<section class="usuarios">
+
+    <div class="usuarios-container">
+
+        <div class="usuarios-header">
+
+            <div class="register-header">
+                <div class="logo">Tecnologi</div>
+            </div>
+
+            <h1>Usuarios registrados</h1>
+
+            <p>
+                Administración de los usuarios registrados en Tecnologi.
+            </p>
+
+            <a href="registro.html" class="btn-nuevo-usuario">
+                + Registrar nuevo usuario
+            </a>
+
+        </div>
+
+        <div
+            id="mensajeUsuarios"
+            class="mensaje-usuarios">
+        </div>
+
+        <div class="usuarios-tabla-container">
+
+            <table class="usuarios-tabla">
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Correo</th>
+                        <th>Acciones</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="tablaUsuarios">
+
+                    <tr>
+                        <td colspan="5">
+                            Cargando usuarios...
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+<script src="usuarios.js"></script>
+
+</body>
+
+</html>

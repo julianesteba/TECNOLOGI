@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productos | Tecnologi</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+
+      <div class="logo">
+        <a href="index.html">Tecnologi</a>
+      </div>
+
+      <div class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="productos.html">Productos</a>
+        <a href="categorias.html">Categorías</a>
+        <a href="buscar.html">Buscar</a>
+        <a href="carrito.html" class="cart-link">
+          🛒 Carrito (<span id="cart-count">0</span>)
+        </a>
+        <a href="login.html">Login</a>
+        <a href="registro.html">Registro</a>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- PRODUCTOS -->
+  <section class="products-page">
+    <div class="container">
+
+      <h2 class="title">Nuestros Productos</h2>
+
+      <p class="subtitle">
+        Descubre nuestra selección de tecnología premium.
+      </p>
+
+      <div class="products-grid">
+
+        <!-- PRODUCTO 1 -->
+        <div class="product-card">
+          <div class="product-img">
+            <img src="./img/Portátil elegante con fondo abstracto.png"
+                 alt="Laptop Pro M2"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span style="display:none;">💻</span>
+          </div>
+
+          <span class="badge-new">Nuevo</span>
+          <p class="category">Laptops</p>
+          <h4>Laptop Pro M2</h4>
+
+          <p class="desc">
+            Potencia profesional para creativos.
+          </p>
+
+          <div class="price-row">
+            <span class="price">$1299</span>
+            <span class="rating">★★★★★</span>
+          </div>
+
+          <button class="btn-add"
+                  onclick="addToCart('Laptop Pro M2', 1299, '💻', 'Laptops')">
+            Añadir al carrito
+          </button>
+        </div>
+
+        <!-- PRODUCTO 2 -->
+        <div class="product-card">
+          <div class="product-img">
+            <img src="./img/celular.png"
+                 alt="Smartphone X Ultra"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span style="display:none;">📱</span>
+          </div>
+
+          <span class="badge-new">Nuevo</span>
+          <p class="category">Smartphones</p>
+          <h4>Smartphone X Ultra</h4>
+
+          <p class="desc">
+            La última generación en tecnología móvil.
+          </p>
+
+          <div class="price-row">
+            <span class="price">$899</span>
+            <span class="rating">★★★★★</span>
+          </div>
+
+          <button class="btn-add"
+                  onclick="addToCart('Smartphone X Ultra', 899, '📱', 'Smartphones')">
+            Añadir al carrito
+          </button>
+        </div>
+
+        <!-- PRODUCTO 3 -->
+        <div class="product-card">
+          <div class="product-img">
+            <img src="./img/auriculares.jpg"
+                 alt="Auriculares Premium"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span style="display:none;">🎧</span>
+          </div>
+
+          <span class="badge-new">Nuevo</span>
+          <p class="category">Audio</p>
+          <h4>Auriculares Premium</h4>
+
+          <p class="desc">
+            Sonido de alta fidelidad.
+          </p>
+
+          <div class="price-row">
+            <span class="price">$199</span>
+            <span class="rating">★★★★★</span>
+          </div>
+
+          <button class="btn-add"
+                  onclick="addToCart('Auriculares Premium', 199, '🎧', 'Audio')">
+            Añadir al carrito
+          </button>
+        </div>
+
+        <!-- PRODUCTO 4 -->
+        <div class="product-card">
+          <div class="product-img">
+            <img src="./img/smartwatch.jpg"
+                 alt="Smartwatch Pro"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span style="display:none;">⌚</span>
+          </div>
+
+          <span class="badge-new">Nuevo</span>
+          <p class="category">Wearables</p>
+          <h4>Smartwatch Pro</h4>
+
+          <p class="desc">
+            Tecnología inteligente para tu día a día.
+          </p>
+
+          <div class="price-row">
+            <span class="price">$349</span>
+            <span class="rating">★★★★★</span>
+          </div>
+
+          <button class="btn-add"
+                  onclick="addToCart('Smartwatch Pro', 349, '⌚', 'Wearables')">
+            Añadir al carrito
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+
+      <div class="footer-column">
+        <h2>Tecnologi</h2>
+        <p>
+          Tu tienda de confianza para los mejores productos tecnológicos.
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h3>Productos</h3>
+        <a href="categorias.html">Laptops</a>
+        <a href="categorias.html">Smartphones</a>
+        <a href="categorias.html">Audio</a>
+        <a href="categorias.html">Accesorios</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Soporte</h3>
+        <a href="help.html">Centro de Ayuda</a>
+        <a href="garantia.html">Garantías</a>
+        <a href="returns.html">Devoluciones</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Legal</h3>
+        <a href="terminos.html">Términos</a>
+        <a href="privacy.html">Privacidad</a>
+        <a href="cookies.html">Cookies</a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 Tecnologi. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <!-- CARRITO -->
+  <script>
+    function obtenerCarrito() {
+      try {
+        return JSON.parse(localStorage.getItem("carrito")) || [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function actualizarContadorCarrito() {
+      const carrito = obtenerCarrito();
+      const contador = document.getElementById("cart-count");
+
+      if (contador) {
+        contador.textContent = carrito.reduce(
+          (total, producto) => total + (Number(producto.cantidad) || 1),
+          0
+        );
+      }
+    }
+
+    function addToCart(nombre, precio, emoji, categoria) {
+      const carrito = obtenerCarrito();
+
+      const productoExistente = carrito.find(
+        producto => producto.nombre === nombre
+      );
+
+      if (productoExistente) {
+        productoExistente.cantidad =
+          (Number(productoExistente.cantidad) || 1) + 1;
+      } else {
+        carrito.push({
+          nombre: nombre,
+          precio: precio,
+          emoji: emoji,
+          categoria: categoria,
+          cantidad: 1
+        });
+      }
+
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+
+      actualizarContadorCarrito();
+
+      alert("Producto agregado al carrito.");
+    }
+
+    document.addEventListener("DOMContentLoaded", actualizarContadorCarrito);
+  </script>
+
+</body>
+</html>

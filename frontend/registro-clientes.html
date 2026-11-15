@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar cliente | Tecnologi</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="registro-clientes.js" defer></script>
+</head>
+<body>
+    <header class="encabezado">
+        <a href="index.html" class="logo">Tecnologi</a>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="usuarios.html">Usuarios</a>
+            <a href="clientes.html" class="activo">Clientes</a>
+        </nav>
+    </header>
+
+    <main class="contenedor formulario-contenedor">
+        <section class="formulario-panel">
+            <p class="etiqueta">NUEVO REGISTRO</p>
+            <h1>Registrar cliente</h1>
+            <p class="descripcion">
+                Completa los datos para registrar un cliente en Tecnologi.
+            </p>
+
+            <form id="formularioCliente">
+                <div class="campo">
+                    <label for="nombre">Nombre</label>
+                    <input id="nombre" name="nombre" type="text"
+                           maxlength="100" required>
+                </div>
+
+                <div class="campo">
+                    <label for="apellido">Apellido</label>
+                    <input id="apellido" name="apellido" type="text"
+                           maxlength="100" required>
+                </div>
+
+                <div class="campo">
+                    <label for="documento">Documento</label>
+                    <input id="documento" name="documento" type="text"
+                           maxlength="30" required>
+                </div>
+
+                <div class="campo">
+                    <label for="telefono">Teléfono</label>
+                    <input id="telefono" name="telefono" type="tel"
+                           maxlength="30" required>
+                </div>
+
+                <div class="campo">
+                    <label for="correo">Correo electrónico</label>
+                    <input id="correo" name="correo" type="email"
+                           maxlength="150" required>
+                </div>
+
+                <div class="campo">
+                    <label for="direccion">Dirección</label>
+                    <input id="direccion" name="direccion" type="text"
+                           maxlength="200" required>
+                </div>
+
+                <p id="mensajeRegistro" class="mensaje" role="status"
+                   aria-live="polite"></p>
+
+                <button id="btnRegistrar" type="submit" class="boton boton-completo">
+                    Registrar cliente
+                </button>
+
+                <a href="clientes.html" class="enlace-volver">
+                    Volver a clientes
+                </a>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>Tu tienda de confianza para los mejores productos tecnológicos.</p>
+        <p>&copy; 2026 Tecnologi. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
