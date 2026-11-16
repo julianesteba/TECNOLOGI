@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categorías | Tecnologi</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- NAVEGACIÓN -->
+  <nav class="navbar">
+    <div class="nav-container">
+
+      <div class="logo">
+        <a href="index.html">Tecnologi</a>
+      </div>
+
+      <div class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="productos.html">Productos</a>
+        <a href="buscar.html">Buscar</a>
+        <a href="login.html">Login</a>
+        <a href="registro.html">Registro</a>
+        <a href="carrito.html" class="cart-link">
+          🛒 <span id="cart-count">0</span>
+        </a>
+      </div>
+
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- ENCABEZADO -->
+    <div class="top">
+      <h1>Categorías</h1>
+      <p>Selecciona una categoría para ver los productos</p>
+    </div>
+
+    <!-- TARJETAS DE CATEGORÍAS -->
+    <div class="categories">
+
+      <div class="category-card" onclick="showProducts('laptops')">
+        <div class="img">
+          <img src="img/Portátil elegante con fondo abstracto.png" alt="Laptops">
+        </div>
+        <h3>Laptops</h3>
+        <p>Equipos de alto rendimiento</p>
+      </div>
+
+      <div class="category-card" onclick="showProducts('celulares')">
+        <div class="img">
+          <img src="img/celular.png" alt="Celulares">
+        </div>
+        <h3>Celulares</h3>
+        <p>Smartphones modernos</p>
+      </div>
+
+      <div class="category-card" onclick="showProducts('audio')">
+        <div class="img">
+          <img src="img/auriculares.jpg" alt="Audio">
+        </div>
+        <h3>Audio</h3>
+        <p>Sonido premium</p>
+      </div>
+
+      <div class="category-card" onclick="showProducts('wearables')">
+        <div class="img">
+          <img src="img/smartwatch.jpg" alt="Wearables">
+        </div>
+        <h3>Wearables</h3>
+        <p>Relojes inteligentes y tecnología portátil</p>
+      </div>
+
+      <div class="category-card" onclick="showProducts('accesorios')">
+        <div class="img">
+          <img src="img/teclado.png" alt="Accesorios">
+        </div>
+        <h3>Accesorios</h3>
+        <p>Todo lo que necesitas</p>
+      </div>
+
+      <div class="category-card" onclick="showProducts('monitores')">
+        <div class="img">
+          <img src="img/monitor.jpg" alt="Monitores">
+        </div>
+        <h3>Monitores</h3>
+        <p>Imágenes en alta resolución</p>
+      </div>
+
+      <div class="category-card" onclick="showProducts('tablets')">
+        <div class="img">
+          <img src="img/tablet.jpg" alt="Tablets">
+        </div>
+        <h3>Tablets</h3>
+        <p>Trabajo y entretenimiento</p>
+      </div>
+
+    </div>
+
+    <!-- LAPTOPS -->
+    <section id="laptops" class="products">
+      <h2>Laptops</h2>
+      <div class="products-grid">
+
+        <div class="product-card">
+          <div class="product-img">
+            <img src="img/Portátil elegante con fondo abstracto.png" alt="Laptop Pro M2">
+          </div>
+          <div class="product-info">
+            <h4>Laptop Pro M2</h4>
+            <p>Potencia profesional para creativos</p>
+            <div class="price">$1299</div>
+            <button class="btn" type="button">Añadir al carrito</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CELULARES -->
+    <section id="celulares" class="products">
+      <h2>Celulares</h2>
+      <div class="products-grid">
+
+        <div class="product-card">
+          <div class="product-img">
+            <img src="img/celular.png" alt="Smartphone X Ultra">
+          </div>
+          <div class="product-info">
+            <h4>Smartphone X Ultra</h4>
+            <p>La última generación móvil</p>
+            <div class="price">$899</div>
+            <button class="btn" type="button">Añadir al carrito</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- AUDIO -->
+    <section id="audio" class="products">
+      <h2>Audio</h2>
+      <div class="products-grid">
+
+        <div class="product-card">
+          <div class="product-img">
+            <img src="img/auriculares.jpg" alt="Auriculares Premium">
+          </div>
+          <div class="product-info">
+            <h4>Auriculares Premium</h4>
+            <p>Sonido envolvente profesional</p>
+            <div class="price">$199</div>
+            <button class="btn" type="button">Añadir al carrito</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WEARABLES -->
+    <section id="wearables" class="products">
+      <h2>Wearables</h2>
+      <div class="products-grid">
+
+        <div class="product-card">
+          <div class="product-img">
+            <img src="img/smartwatch.jpg" alt="Smartwatch Pro">
+          </div>
+          <div class="product-info">
+            <h4>Smartwatch Pro</h4>
+            <p>Salud, actividad física y notificaciones</p>
+            <div class="price">$349</div>
+            <button class="btn" type="button">Añadir al carrito</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ACCESORIOS -->
+    <section id="accesorios" class="products">
+      <h2>Accesorios</h2>
+      <div class="products-grid">
+
+        <div class="product-card">
+          <div class="product-img">
+            <img src="img/teclado.png" alt="Teclado Mecánico RGB">
+          </div>
+          <div class="product-info">
+            <h4>Teclado Mecánico RGB</h4>
+            <p>Switches premium e iluminación RGB</p>
+            <div class="price">$149</div>
+            <button class="btn" type="button">Añadir al carrito</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img">
+            <img src="img/mouse.jpg" alt="Mouse Gaming">
+          </div>
+          <div class="product-info">
+            <h4>Mouse Gaming</h4>
+            <p>Alta precisión para videojuegos</p>
+            <div class="price">$79</div>
+            <button class="btn" type="button">Añadir al carrito</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MONITORES -->
+    <section id="monitores" class="products">
+      <h2>Monitores</h2>
+      <div class="products-grid">
+
+        <div class="product-card">
+          <div class="product-img">
+            <img src="img/monitor.jpg" alt="Monitor 4K">
+          </div>
+          <div class="product-info">
+            <h4>Monitor 4K</h4>
+            <p>Pantalla Ultra HD para trabajo y entretenimiento</p>
+            <div class="price">$599</div>
+            <button class="btn" type="button">Añadir al carrito</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TABLETS -->
+    <section id="tablets" class="products">
+      <h2>Tablets</h2>
+      <div class="products-grid">
+
+        <div class="product-card">
+          <div class="product-img">
+            <img src="img/tablet.jpg" alt="Tablet Pro">
+          </div>
+          <div class="product-info">
+            <h4>Tablet Pro</h4>
+            <p>Ideal para trabajo, estudio y ocio</p>
+            <div class="price">$799</div>
+            <button class="btn" type="button">Añadir al carrito</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="footer">
+    <div class="footer-container">
+
+      <div class="footer-column">
+        <h2>Tecnologi</h2>
+        <p>Tu tienda de confianza para los mejores productos tecnológicos.</p>
+      </div>
+
+      <div class="footer-column">
+        <h3>Productos</h3>
+        <a href="categorias.html">Laptops</a>
+        <a href="categorias.html">Smartphones</a>
+        <a href="categorias.html">Audio</a>
+        <a href="categorias.html">Accesorios</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Soporte</h3>
+        <a href="help.html">Centro de Ayuda</a>
+        <a href="garantia.html">Garantías</a>
+        <a href="returns.html">Devoluciones</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Legal</h3>
+        <a href="terminos.html">Términos</a>
+        <a href="privacy.html">Privacidad</a>
+        <a href="cookies.html">Cookies</a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 Tecnologi. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <script>
+    // MOSTRAR LA CATEGORÍA SELECCIONADA
+    function showProducts(categoryId) {
+      const sections = document.querySelectorAll(".products");
+
+      sections.forEach(section => {
+        section.classList.remove("active");
+      });
+
+      const selected = document.getElementById(categoryId);
+
+      if (selected) {
+        selected.classList.add("active");
+
+        window.scrollTo({
+          top: selected.getBoundingClientRect().top +
+               window.scrollY - 20,
+          behavior: "smooth"
+        });
+      }
+    }
+
+    // LEER EL CARRITO GUARDADO
+    function getCart() {
+      try {
+        const cart = JSON.parse(localStorage.getItem("carrito"));
+        return Array.isArray(cart) ? cart : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    // ACTUALIZAR EL CONTADOR
+    function updateCartCount() {
+      const cart = getCart();
+
+      const total = cart.reduce((sum, item) => {
+        return sum + (Number(item.cantidad) || 1);
+      }, 0);
+
+      document.getElementById("cart-count").textContent = total;
+    }
+
+    // CONECTAR LOS BOTONES CON EL CARRITO
+    document.querySelectorAll(".product-card .btn").forEach(button => {
+      button.addEventListener("click", () => {
+        const card = button.closest(".product-card");
+
+        const nombre = card.querySelector("h4").textContent.trim();
+
+        const precioTexto = card.querySelector(".price").textContent;
+        const precio = Number(precioTexto.replace(/[^0-9.]/g, ""));
+
+        const categoria = card.closest(".products").id;
+
+        const img = card.querySelector(".product-img img");
+        const emoji = img ? img.alt : "📦";
+        const imagen = img ? img.getAttribute("src") : "";
+
+        const carrito = getCart();
+
+        const existente = carrito.find(item => item.nombre === nombre);
+
+        if (existente) {
+          existente.cantidad = (Number(existente.cantidad) || 1) + 1;
+          existente.imagen = imagen;
+        } else {
+          carrito.push({
+            nombre: nombre,
+            precio: precio,
+            emoji: emoji,
+            categoria: categoria,
+            imagen: imagen,
+            cantidad: 1
+          });
+        }
+
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+        updateCartCount();
+
+        alert(nombre + " se añadió al carrito.");
+      });
+    });
+
+    // ACTUALIZAR CONTADOR AL ABRIR LA PÁGINA
+    updateCartCount();
+  </script>
+
+</body>
+</html>
