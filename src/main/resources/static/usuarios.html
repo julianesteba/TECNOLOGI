@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -12,68 +13,66 @@
 
 <body>
 
-<section class="usuarios">
+    <section class="usuarios">
 
-    <div class="usuarios-container">
+        <div class="usuarios-container">
 
-        <div class="usuarios-header">
+            <div class="usuarios-header">
 
-            <div class="register-header">
-                <div class="logo">Tecnologi</div>
+                <div class="register-header">
+                    <div class="logo">Tecnologi</div>
+                </div>
+
+                <h1>Usuarios registrados</h1>
+
+                <p>
+                    Administración de los usuarios registrados en Tecnologi.
+                </p>
+
+                <a href="registro.html" class="btn-nuevo-usuario">
+                    + Registrar nuevo usuario
+                </a>
+
             </div>
 
-            <h1>Usuarios registrados</h1>
+            <div
+                id="mensajeUsuarios"
+                class="mensaje-usuarios">
+            </div>
 
-            <p>
-                Administración de los usuarios registrados en Tecnologi.
-            </p>
+            <div class="usuarios-tabla-container">
 
-            <a href="registro.html" class="btn-nuevo-usuario">
-                + Registrar nuevo usuario
-            </a>
+                <table class="usuarios-tabla">
 
-        </div>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Correo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
 
-        <div
-            id="mensajeUsuarios"
-            class="mensaje-usuarios">
-        </div>
+                    <tbody id="tablaUsuarios">
 
-        <div class="usuarios-tabla-container">
+                        <tr>
+                            <td colspan="5">
+                                Cargando usuarios...
+                            </td>
+                        </tr>
 
-            <table class="usuarios-tabla">
+                    </tbody>
 
-                <thead>
+                </table>
 
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Correo</th>
-                        <th>Acciones</th>
-                    </tr>
-
-                </thead>
-
-                <tbody id="tablaUsuarios">
-
-                    <tr>
-                        <td colspan="5">
-                            Cargando usuarios...
-                        </td>
-                    </tr>
-
-                </tbody>
-
-            </table>
+            </div>
 
         </div>
 
-    </div>
+    </section>
 
-</section>
-
-<script src="usuarios.js"></script>
+    <script src="usuarios.js?v=2"></script>
 
 </body>
 
