@@ -1,26 +1,24 @@
+
+const API_URL = "https://tecnologi-production.up.railway.app/api/usuarios";
+
 const tablaUsuarios = document.getElementById("tablaUsuarios");
 const mensajeUsuarios = document.getElementById("mensajeUsuarios");
 
-
-// Cargar usuarios al abrir la página
-
 document.addEventListener("DOMContentLoaded", cargarUsuarios);
 
-
+// CARGAR USUARIOS
 async function cargarUsuarios() {
-
     try {
+        tablaUsuarios.innerHTML = `
+            <tr>
+                <td colspan="5">Cargando usuarios...</td>
+            </tr>
+        `;
 
-        const respuesta = await fetch(
-            "http://localhost:8080/api/usuarios"
-        );
+        const respuesta = await fetch(API_URL);
 
         if (!respuesta.ok) {
-
-            throw new Error(
-                "No se pudieron obtener los usuarios."
-            );
-
+            throw new Error("Error al consultar los usuarios.");
         }
 
         const usuarios = await respuesta.json();
@@ -28,17 +26,11 @@ async function cargarUsuarios() {
         mostrarUsuarios(usuarios);
 
     } catch (error) {
-
-        console.error(
-            "Error al cargar usuarios:",
-            error
-        );
+        console.error("Error al cargar usuarios:", error);
 
         tablaUsuarios.innerHTML = `
             <tr>
-                <td colspan="5">
-                    No se pudieron cargar los usuarios.
-                </td>
+                <td colspan="5">No se pudieron cargar los usuarios.</td>
             </tr>
         `;
 
@@ -49,128 +41,96 @@ async function cargarUsuarios() {
     }
 }
 
-
-// Mostrar usuarios en la tabla
-
+// MOSTRAR USUARIOS
 function mostrarUsuarios(usuarios) {
-
     tablaUsuarios.innerHTML = "";
 
-    if (usuarios.length === 0) {
-
+    if (!usuarios || usuarios.length === 0) {
         tablaUsuarios.innerHTML = `
             <tr>
-                <td colspan="5">
-                    No hay usuarios registrados.
-                </td>
+                <td colspan="5">No hay usuarios registrados.</td>
             </tr>
         `;
-
         return;
     }
 
-
     usuarios.forEach(usuario => {
-
         const fila = document.createElement("tr");
 
-        fila.innerHTML = `
-            <td>${usuario.id}</td>
-            <td>${usuario.nombre}</td>
-            <td>${usuario.apellido}</td>
-            <td>${usuario.correo}</td>
+        const id = document.createElement("td");
+        id.textContent = usuario.id;
 
-            <td>
+        const nombre = document.createElement("td");
+        nombre.textContent = usuario.nombre;
 
-                <button
-                    class="btn-eliminar"
-                    onclick="eliminarUsuario(${usuario.id})">
-                    Eliminar
-                </button>
+        const apellido = document.createElement("td");
+        apellido.textContent = usuario.apellido;
 
-            </td>
-        `;
+        const correo = document.createElement("td");
+        correo.textContent = usuario.correo;
+
+        const acciones = document.createElement("td");
+
+        const botonEliminar = document.createElement("button");
+        botonEliminar.textContent = "Eliminar";
+        botonEliminar.className = "btn-eliminar";
+
+        botonEliminar.addEventListener("click", () => {
+            eliminarUsuario(usuario.id);
+        });
+
+        acciones.appendChild(botonEliminar);
+
+        fila.append(id, nombre, apellido, correo, acciones);
 
         tablaUsuarios.appendChild(fila);
-
     });
 }
 
-
-// Eliminar usuario
-
+// ELIMINAR USUARIO
 async function eliminarUsuario(id) {
-
     const confirmar = confirm(
         "¿Está seguro de que desea eliminar este usuario?"
     );
 
-    if (!confirmar) {
-        return;
-    }
-
+    if (!confirmar) return;
 
     try {
+        const respuesta = await fetch(`${API_URL}/${id}`, {
+            method: "DELETE"
+        });
 
-        const respuesta = await fetch(
-            `http://localhost:8080/api/usuarios/${id}`,
-            {
-                method: "DELETE"
-            }
-        );
-
-
-        if (respuesta.ok) {
-
-            mostrarMensaje(
-                "Usuario eliminado correctamente.",
-                "exito"
-            );
-
-            cargarUsuarios();
-
-        } else {
-
-            mostrarMensaje(
-                "No se pudo eliminar el usuario.",
-                "error"
-            );
-
+        if (!respuesta.ok) {
+            throw new Error("No se pudo eliminar el usuario.");
         }
 
-    } catch (error) {
-
-        console.error(
-            "Error al eliminar usuario:",
-            error
+        mostrarMensaje(
+            "Usuario eliminado correctamente.",
+            "exito"
         );
 
+        await cargarUsuarios();
+
+    } catch (error) {
+        console.error("Error al eliminar:", error);
+
         mostrarMensaje(
-            "No se pudo conectar con la API.",
+            "No se pudo eliminar el usuario.",
             "error"
         );
     }
 }
 
-
-// Mostrar mensajes
-
+// MOSTRAR MENSAJES
 function mostrarMensaje(texto, tipo) {
-
     mensajeUsuarios.textContent = texto;
-
     mensajeUsuarios.style.display = "block";
 
-
     if (tipo === "exito") {
-
         mensajeUsuarios.style.backgroundColor = "#d1fae5";
         mensajeUsuarios.style.color = "#065f46";
-
     } else {
-
         mensajeUsuarios.style.backgroundColor = "#fee2e2";
         mensajeUsuarios.style.color = "#991b1b";
-
     }
 }
