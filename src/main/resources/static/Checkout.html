@@ -1,201 +1,180 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Checkout</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finalizar compra | Tecnologi</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-   <nav class="navbar">
-  <div class="nav-container">
 
-    <div class="logo">
-      <a href="index.html">Tecnologi</a>
-    </div>
-
-    <div class="nav-links">
-      <a href="index.html">Inicio</a>
-      <a href="productos.html">Productos</a>
-      <a href="buscar.html">Buscar</a>
-      <a href="login.html">Login</a>
-      <a href="registro.html">Registro</a>
-      <a href="carrito.html" class="cart-link">
-  🛒 <span id="cart-count">0</span>
-</a>
-    </div>
-
-  </div>
-</nav>
-
-  </div>
-</nav>
-
-<!-- CHECKOUT -->
-<section class="checkout">
-  <div class="container">
-
-    <h2 class="title">Finalizar Compra</h2>
-
-    <div class="checkout-grid">
-
-      <!-- FORMULARIO -->
-      <div class="form-box">
-
-        <h3>Datos del Cliente</h3>
-
-        <input type="text" placeholder="Nombre completo">
-        <input type="email" placeholder="Correo electrónico">
-        <input type="text" placeholder="Dirección">
-        <input type="text" placeholder="Ciudad">
-        <input type="text" placeholder="Teléfono">
-
-        <h3>Método de Pago</h3>
-
-        <select>
-          <option>Tarjeta de crédito</option>
-          <option>Nequi</option>
-          <option>Efectivo</option>
-        </select>
-
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <a href="index.html">Tecnologi</a>
       </div>
 
-<!-- RESUMEN -->
-<div class="summary">
+      <div class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="productos.html">Productos</a>
+        <a href="buscar.html">Buscar</a>
+        <a href="login.html">Login</a>
+        <a href="registro.html">Registro</a>
+        <a href="carrito.html" class="cart-link">
+          🛒 <span id="cart-count">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
 
-  <h3>Resumen de Compra</h3>
+  <section class="checkout">
+    <div class="container">
 
-  <div id="checkout-items"></div>
+      <h2 class="title">Finalizar Compra</h2>
 
-  <div class="invoice-total">
+      <form id="checkout-form">
+        <div class="checkout-grid">
 
-    <div class="row">
-      <span>Subtotal</span>
-      <span id="subtotal">$0</span>
+          <div class="form-box">
+            <h3>Datos del Cliente</h3>
+
+            <input type="text" id="nombre" placeholder="Nombre" required>
+            <input type="text" id="apellido" placeholder="Apellido" required>
+            <input type="text" id="documento" placeholder="Documento" required>
+            <input type="email" id="correo" placeholder="Correo electrónico" required>
+            <input type="text" id="direccion" placeholder="Dirección" required>
+            <input type="text" id="ciudad" placeholder="Ciudad" required>
+            <input type="tel" id="telefono" placeholder="Teléfono" required>
+
+            <h3>Método de Pago</h3>
+
+            <select id="metodo-pago" required>
+              <option value="">Selecciona un método</option>
+              <option value="Tarjeta de crédito">Tarjeta de crédito</option>
+              <option value="Nequi">Nequi</option>
+              <option value="Efectivo">Efectivo</option>
+            </select>
+          </div>
+
+          <div class="summary">
+            <h3>Resumen de Compra</h3>
+
+            <div id="checkout-items"></div>
+
+            <div class="invoice-total">
+              <div class="row">
+                <span>Subtotal</span>
+                <span id="subtotal">$0</span>
+              </div>
+
+              <div class="row">
+                <span>IVA (19%)</span>
+                <span id="iva">$0</span>
+              </div>
+
+              <div class="total">
+                <span>Total</span>
+                <span id="total">$0</span>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-primary" id="btn-pagar">
+              Pagar
+            </button>
+
+            <p id="mensaje-checkout"></p>
+          </div>
+
+        </div>
+      </form>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h2>Tecnologi</h2>
+        <p>Tu tienda de confianza para los mejores productos tecnológicos.</p>
+      </div>
+
+      <div class="footer-column">
+        <h3>Productos</h3>
+        <a href="categorias.html">Laptops</a>
+        <a href="categorias.html">Smartphones</a>
+        <a href="categorias.html">Audio</a>
+        <a href="categorias.html">Accesorios</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Soporte</h3>
+        <a href="help.html">Centro de Ayuda</a>
+        <a href="garantia.html">Garantías</a>
+        <a href="returns.html">Devoluciones</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Legal</h3>
+        <a href="terminos.html">Términos</a>
+        <a href="privacy.html">Privacidad</a>
+        <a href="cookies.html">Cookies</a>
+      </div>
     </div>
 
-    <div class="row">
-      <span>IVA</span>
-      <span id="iva">$0</span>
+    <div class="footer-bottom">
+      © 2026 Tecnologi. Todos los derechos reservados.
     </div>
+  </footer>
 
-    <div class="total">
-      <span>Total</span>
-      <span id="total">$0</span>
-    </div>
+  <script>
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    const checkoutItems = document.getElementById("checkout-items");
 
-  </div>
+    let subtotal = 0;
 
-  <button class="btn-primary">
-    Pagar
-  </button>
+    carrito.forEach(producto => {
+      const cantidad = Number(producto.cantidad) || 0;
+      const precio = Number(producto.precio) || 0;
+      const totalProducto = precio * cantidad;
 
-</div>
+      subtotal += totalProducto;
 
- 
-</section>
+      checkoutItems.innerHTML += `
+        <div class="invoice-item">
+          <div class="invoice-left">
+            <div class="invoice-icon">${producto.emoji || ""}</div>
+            <div>
+              <h4>${producto.nombre}</h4>
+              <p>${producto.categoria || ""}</p>
+              <span>Cantidad: ${cantidad}</span>
+            </div>
+          </div>
+          <div class="invoice-price">
+            $${totalProducto.toLocaleString("es-CO")}
+          </div>
+        </div>
+      `;
+    });
+
+    const iva = Math.round(subtotal * 0.19);
+    const total = subtotal + iva;
+
+    document.getElementById("subtotal").textContent =
+      "$" + subtotal.toLocaleString("es-CO");
+
+    document.getElementById("iva").textContent =
+      "$" + iva.toLocaleString("es-CO");
+
+    document.getElementById("total").textContent =
+      "$" + total.toLocaleString("es-CO");
+
+    document.getElementById("cart-count").textContent =
+      carrito.reduce((suma, producto) =>
+        suma + (Number(producto.cantidad) || 0), 0);
+  </script>
 
 </body>
-<!-- FOOTER -->
-<footer class="footer">
-
-  <div class="footer-container">
-
-    <div class="footer-column">
-      <h2>Tecnologi</h2>
-      <p>
-        Tu tienda de confianza para los mejores productos tecnológicos.
-      </p>
-    </div>
-
-    <div class="footer-column">
-      <h3>Productos</h3>
-      <a href="categorias.html">Laptops</a>
-      <a href="categorias.html">Smartphones</a>
-      <a href="categorias.html">Audio</a>
-      <a href="categorias.html">Accesorios</a>
-    </div>
-
-    <div class="footer-column">
-      <h3>Soporte</h3>
-      <a href="help.html">Centro de Ayuda</a>
-      <a href="garantia.html">Garantías</a>
-      <a href="returns.html">Devoluciones</a>
-      <a href="contacto.html">Contacto</a>
-    </div>
-
-    <div class="footer-column">
-      <h3>Legal</h3>
-      <a href="terminos.html">Términos</a>
-      <a href="privacy.html">Privacidad</a>
-      <a href="cookies.html">Cookies</a>
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    © 2026 Tecnologi. Todos los derechos reservados.
-  </div>
-
-</footer>
-
-</html>
-<!-- JAVASCRIPT -->
-<script>
-const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
-const checkoutItems = document.getElementById("checkout-items");
-
-let subtotal = 0;
-
-checkoutItems.innerHTML = "";
-
-carrito.forEach(producto => {
-
-  const totalProducto =
-    producto.precio * producto.cantidad;
-
-  subtotal += totalProducto;
-
-  checkoutItems.innerHTML += `
-
-    <div class="invoice-item">
-
-      <div class="invoice-left">
-
-        <div class="invoice-icon">
-          ${producto.emoji}
-        </div>
-
-        <div>
-          <h4>${producto.nombre}</h4>
-          <p>${producto.categoria}</p>
-          <span>Cantidad: ${producto.cantidad}</span>
-        </div>
-
-      </div>
-
-      <div class="invoice-price">
-        $${totalProducto}
-      </div>
-
-    </div>
-
-  `;
-
-});
-
-const iva = Math.round(subtotal * 0.21);
-
-const total = subtotal + iva;
-
-document.getElementById("subtotal").textContent =
-  "$" + subtotal;
-
-document.getElementById("iva").textContent =
-  "$" + iva;
-
-document.getElementById("total").textContent =
-  "$" + total;
-
-</script>
 </html>
