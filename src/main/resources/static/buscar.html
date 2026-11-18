@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buscar Productos | Tecnologi</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- BARRA DE NAVEGACIÓN -->
+  <nav class="navbar">
+    <div class="nav-container">
+
+      <div class="logo">
+        <a href="index.html">Tecnologi</a>
+      </div>
+
+      <div class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="productos.html">Productos</a>
+        <a href="buscar.html">Buscar</a>
+        <a href="login.html">Login</a>
+        <a href="registro.html">Registro</a>
+        <a href="carrito.html" class="cart-link">
+          🛒 <span id="cart-count">0</span>
+        </a>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- BUSCADOR -->
+  <section class="search-page">
+    <div class="container">
+
+      <h2 class="title">Buscar Productos</h2>
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Buscar por nombre, categoría o descripción..."
+        class="search-input"
+        aria-label="Buscar productos"
+      >
+
+      <p id="resultText" class="subtitle">
+        Mostrando todos los productos
+      </p>
+
+      <!-- PRODUCTOS -->
+      <div id="productsContainer" class="products-grid"></div>
+
+      <!-- MENSAJE SIN RESULTADOS -->
+      <div id="noResults" class="no-results" style="display: none;">
+        <p>No se encontraron productos.</p>
+        <p>Intenta buscar con otro nombre o categoría.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="footer">
+
+    <div class="footer-container">
+
+      <div class="footer-column">
+        <h2>Tecnologi</h2>
+        <p>
+          Tu tienda de confianza para los mejores productos tecnológicos.
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h3>Productos</h3>
+        <a href="categorias.html">Laptops</a>
+        <a href="categorias.html">Smartphones</a>
+        <a href="categorias.html">Audio</a>
+        <a href="categorias.html">Accesorios</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Soporte</h3>
+        <a href="help.html">Centro de Ayuda</a>
+        <a href="garantia.html">Garantías</a>
+        <a href="returns.html">Devoluciones</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Legal</h3>
+        <a href="terminos.html">Términos</a>
+        <a href="privacy.html">Privacidad</a>
+        <a href="cookies.html">Cookies</a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 Tecnologi. Todos los derechos reservados.
+    </div>
+
+  </footer>
+
+  <script>
+    // CATÁLOGO DE PRODUCTOS
+    const products = [
+      {
+        name: "Laptop Pro M2",
+        price: 1299,
+        category: "Laptops",
+        desc: "Potencia profesional",
+        image: "img/Portátil elegante con fondo abstracto.png",
+        icon: "💻"
+      },
+      {
+        name: "Smartphone X Ultra",
+        price: 899,
+        category: "Smartphones",
+        desc: "Tecnología móvil",
+        image: "img/celular.png",
+        icon: "📱"
+      },
+      {
+        name: "Auriculares Premium",
+        price: 199,
+        category: "Audio",
+        desc: "Alta fidelidad",
+        image: "img/auriculares.jpg",
+        icon: "🎧"
+      },
+      {
+        name: "Smartwatch Pro",
+        price: 349,
+        category: "Wearables",
+        desc: "Salud y fitness",
+        image: "img/smartwatch.jpg",
+        icon: "⌚"
+      },
+      {
+        name: "Teclado RGB Mecánico",
+        price: 149,
+        category: "Accesorios",
+        desc: "Teclado mecánico con iluminación RGB",
+        image: "img/teclado.png",
+        icon: "⌨️"
+      },
+      {
+        name: "Mouse Gaming",
+        price: 79,
+        category: "Accesorios",
+        desc: "Alta precisión para videojuegos",
+        image: "img/mouse.jpg",
+        icon: "🖱️"
+      },
+      {
+        name: "Monitor 4K",
+        price: 599,
+        category: "Monitores",
+        desc: "Pantalla Ultra HD",
+        image: "img/monitor.jpg",
+        icon: "🖥️"
+      },
+      {
+        name: "Tablet Pro",
+        price: 799,
+        category: "Tablets",
+        desc: "Ideal para trabajo y ocio",
+        image: "img/tablet.jpg",
+        icon: "📱"
+      }
+    ];
+
+    const input = document.getElementById("searchInput");
+    const container = document.getElementById("productsContainer");
+    const resultText = document.getElementById("resultText");
+    const noResults = document.getElementById("noResults");
+    const cartCount = document.getElementById("cart-count");
+
+    // LEER EL CARRITO GUARDADO
+    function getCart() {
+      try {
+        const cart = JSON.parse(localStorage.getItem("carrito"));
+        return Array.isArray(cart) ? cart : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    // ACTUALIZAR CONTADOR DEL CARRITO
+    function updateCartCount() {
+      const cart = getCart();
+
+      const total = cart.reduce((sum, item) => {
+        return sum + (Number(item.cantidad) || 1);
+      }, 0);
+
+      cartCount.textContent = total;
+    }
+
+    // MOSTRAR PRODUCTOS
+    function render(list) {
+      container.innerHTML = "";
+      noResults.style.display = list.length === 0 ? "block" : "none";
+
+      if (list.length === 0) {
+        return;
+      }
+
+      list.forEach((p) => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+
+        const imageContainer = document.createElement("div");
+        imageContainer.className = "product-img";
+
+        const img = document.createElement("img");
+        img.src = p.image;
+        img.alt = p.name;
+        img.loading = "lazy";
+
+        // MOSTRAR UN EMOJI SI LA IMAGEN NO EXISTE
+        img.onerror = function () {
+          imageContainer.textContent = p.icon;
+        };
+
+        imageContainer.appendChild(img);
+
+        const category = document.createElement("p");
+        category.className = "category";
+        category.textContent = p.category;
+
+        const name = document.createElement("h4");
+        name.textContent = p.name;
+
+        const desc = document.createElement("p");
+        desc.className = "desc";
+        desc.textContent = p.desc;
+
+        const priceRow = document.createElement("div");
+        priceRow.className = "price-row";
+
+        const price = document.createElement("span");
+        price.className = "price";
+        price.textContent = "$" + p.price;
+
+        const rating = document.createElement("span");
+        rating.className = "rating";
+        rating.textContent = "★★★★★";
+
+        priceRow.append(price, rating);
+
+        const button = document.createElement("button");
+        button.className = "btn-add";
+        button.textContent = "Añadir";
+        button.type = "button";
+
+        button.addEventListener("click", () => addToCart(p));
+
+        card.append(
+          imageContainer,
+          category,
+          name,
+          desc,
+          priceRow,
+          button
+        );
+
+        container.appendChild(card);
+      });
+    }
+
+    // AÑADIR PRODUCTO AL CARRITO
+    function addToCart(product) {
+      const cart = getCart();
+
+      const existing = cart.find(item => item.nombre === product.name);
+
+      if (existing) {
+        existing.cantidad = (Number(existing.cantidad) || 1) + 1;
+      } else {
+        cart.push({
+          nombre: product.name,
+          precio: product.price,
+          emoji: product.icon,
+          categoria: product.category,
+          cantidad: 1
+        });
+      }
+
+      localStorage.setItem("carrito", JSON.stringify(cart));
+      updateCartCount();
+
+      alert(product.name + " se añadió al carrito.");
+    }
+
+    // BUSCAR POR NOMBRE, CATEGORÍA O DESCRIPCIÓN
+    input.addEventListener("input", () => {
+      const value = input.value.trim().toLowerCase();
+
+      const filtered = products.filter(p =>
+        p.name.toLowerCase().includes(value) ||
+        p.category.toLowerCase().includes(value) ||
+        p.desc.toLowerCase().includes(value)
+      );
+
+      resultText.textContent = value
+        ? filtered.length + " resultado(s)"
+        : "Mostrando todos los productos";
+
+      render(filtered);
+    });
+
+    // INICIALIZAR PÁGINA
+    render(products);
+    updateCartCount();
+  </script>
+
+</body>
+</html>
