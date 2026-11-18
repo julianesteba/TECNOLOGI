@@ -6,22 +6,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Usuarios - Tecnologi</title>
+    <title>Usuarios registrados | Tecnologi</title>
 
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
+    <!-- BARRA DE NAVEGACIÓN -->
+    <nav class="navbar">
+        <div class="nav-container">
+
+            <div class="logo">
+                <a href="index.html">Tecnologi</a>
+            </div>
+
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="productos.html">Productos</a>
+                <a href="categorias.html">Categorías</a>
+                <a href="buscar.html">Buscar</a>
+
+                <a href="carrito.html" class="cart-link">
+                    🛒 Carrito (<span id="cart-count">0</span>)
+                </a>
+
+                <a href="login.html">Login</a>
+                <a href="registro.html">Registro</a>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- CONTENIDO DE USUARIOS -->
     <section class="usuarios">
 
         <div class="usuarios-container">
 
             <div class="usuarios-header">
-
-                <div class="register-header">
-                    <div class="logo">Tecnologi</div>
-                </div>
 
                 <h1>Usuarios registrados</h1>
 
@@ -35,11 +57,13 @@
 
             </div>
 
+            <!-- MENSAJES -->
             <div
                 id="mensajeUsuarios"
                 class="mensaje-usuarios">
             </div>
 
+            <!-- TABLA DE USUARIOS -->
             <div class="usuarios-tabla-container">
 
                 <table class="usuarios-tabla">
@@ -72,7 +96,81 @@
 
     </section>
 
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-column">
+                <h2>Tecnologi</h2>
+                <p>
+                    Tu tienda de confianza para los mejores productos tecnológicos.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Productos</h3>
+                <a href="categorias.html">Laptops</a>
+                <a href="categorias.html">Smartphones</a>
+                <a href="categorias.html">Audio</a>
+                <a href="categorias.html">Accesorios</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Soporte</h3>
+                <a href="help.html">Centro de ayuda</a>
+                <a href="garantia.html">Garantías</a>
+                <a href="returns.html">Devoluciones</a>
+                <a href="contacto.html">Contacto</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <a href="terminos.html">Términos</a>
+                <a href="privacy.html">Privacidad</a>
+                <a href="cookies.html">Cookies</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 Tecnologi. Todos los derechos reservados.
+        </div>
+
+    </footer>
+
+    <!-- JAVASCRIPT -->
     <script src="usuarios.js?v=2"></script>
+
+    <!-- CONTADOR DEL CARRITO -->
+    <script>
+        function obtenerCarrito() {
+            try {
+                return JSON.parse(localStorage.getItem("carrito")) || [];
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function actualizarContadorCarrito() {
+            const carrito = obtenerCarrito();
+            const contador = document.getElementById("cart-count");
+
+            if (contador) {
+                const cantidadTotal = carrito.reduce(
+                    (total, producto) =>
+                        total + (Number(producto.cantidad) || 1),
+                    0
+                );
+
+                contador.textContent = cantidadTotal;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            actualizarContadorCarrito();
+        });
+    </script>
 
 </body>
 
