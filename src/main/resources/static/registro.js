@@ -1,77 +1,116 @@
+
+const API_URL = "https://tecnologi-production.up.railway.app/api/usuarios";
+
 const formulario = document.getElementById("registerForm");
 const mensaje = document.getElementById("mensaje");
 const botonRegistro = document.getElementById("btnRegistro");
 
-formulario.addEventListener("submit", async function(event) {
-    event.preventDefault();
+// Verificar que existan los elementos del formulario
+if (formulario && mensaje && botonRegistro) {
 
-    const nombre = document.getElementById("nombre").value.trim();
-    const apellido = document.getElementById("apellido").value.trim();
-    const correo = document.getElementById("correo").value.trim();
-    const contrasena = document.getElementById("contrasena").value;
-    const confirmarContrasena =
-        document.getElementById("confirmarContrasena").value;
+    formulario.addEventListener("submit", async function(event) {
+        event.preventDefault();
 
-    if (contrasena !== confirmarContrasena) {
-        mostrarMensaje("Las contraseñas no coinciden.", "error");
-        return;
-    }
+        const nombre = document.getElementById("nombre").value.trim();
+        const apellido = document.getElementById("apellido").value.trim();
+        const correo = document.getElementById("correo").value.trim();
+        const contrasena = document.getElementById("contrasena").value;
+        const confirmarContrasena = document.getElementById("confirmarContrasena").value;
 
-    const usuario = {
-        nombre: nombre,
-        apellido: apellido,
-        correo: correo,
-        contrasena: contrasena
-    };
+        // Validar campos
+        if (!nombre || !apellido || !correo || !contrasena || !confirmarContrasena) {
+            mostrarMensaje("Todos los campos son obligatorios.", "error");
+            return;
+        }
 
-    botonRegistro.disabled = true;
-    botonRegistro.textContent = "Registrando...";
+        // Validar correo
+        const formatoCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    try {
-        const respuesta = await fetch(
-            "http://localhost:8080/api/usuarios",
-            {
+        if (!formatoCorreo.test(correo)) {
+            mostrarMensaje("Ingresa un correo electrónico válido.", "error");
+            return;
+        }
+
+        // Validar contraseña
+        if (contrasena.length < 6) {
+            mostrarMensaje("La contraseña debe tener mínimo 6 caracteres.", "error");
+            return;
+        }
+
+        // Confirmar contraseña
+        if (contrasena !== confirmarContrasena) {
+            mostrarMensaje("Las contraseñas no coinciden.", "error");
+            return;
+        }
+
+        const usuario = {
+            nombre: nombre,
+            apellido: apellido,
+            correo: correo,
+            contrasena: contrasena
+        };
+
+        botonRegistro.disabled = true;
+        botonRegistro.textContent = "Registrando...";
+
+        try {
+            const respuesta = await fetch(API_URL, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(usuario)
+            });
+
+            const textoRespuesta = await respuesta.text();
+
+            let datos = {};
+
+            try {
+                datos = textoRespuesta ? JSON.parse(textoRespuesta) : {};
+            } catch {
+                datos = {};
             }
-        );
 
-        const datos = await respuesta.json();
+            if (respuesta.ok) {
+                mostrarMensaje(
+                    "¡Registro exitoso! Tu usuario fue guardado correctamente.",
+                    "exito"
+                );
 
-        if (respuesta.ok) {
+                formulario.reset();
+
+            } else {
+                mostrarMensaje(
+                    datos.message ||
+                    datos.mensaje ||
+                    `No se pudo registrar el usuario. Error ${respuesta.status}.`,
+                    "error"
+                );
+
+                console.error("Error de la API:", datos);
+            }
+
+        } catch (error) {
+            console.error("Error de conexión:", error);
+
             mostrarMensaje(
-                "¡Registro exitoso! El usuario fue registrado correctamente.",
-                "exito"
-            );
-
-            formulario.reset();
-        } else {
-            mostrarMensaje(
-                datos.message ||
-                "No se pudo registrar el usuario. Verifica los datos.",
+                "No se pudo conectar con la API de Tecnologi. Verifica que Railway esté funcionando.",
                 "error"
             );
+
+        } finally {
+            botonRegistro.disabled = false;
+            botonRegistro.textContent = "Crear Cuenta";
         }
+    });
 
-    } catch (error) {
-        console.error("Error:", error);
+} else {
+    console.error("No se encontraron los elementos del formulario de registro.");
+}
 
-        mostrarMensaje(
-            "No se pudo conectar con el servidor. Verifica que la API esté ejecutándose.",
-            "error"
-        );
-
-    } finally {
-        botonRegistro.disabled = false;
-        botonRegistro.textContent = "Crear Cuenta";
-    }
-});
-
+// Mostrar mensajes
 function mostrarMensaje(texto, tipo) {
-
     mensaje.textContent = texto;
     mensaje.style.display = "block";
 
