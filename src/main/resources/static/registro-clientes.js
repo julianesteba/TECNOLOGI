@@ -1,74 +1,101 @@
 
-const API_CLIENTES = "http://localhost:8080/api/clientes";
+const formulario = document.getElementById("registerForm");
+const mensaje = document.getElementById("mensaje");
+const botonRegistro = document.getElementById("btnRegistro");
 
-const formulario = document.getElementById("formularioCliente");
-const mensaje = document.getElementById("mensajeRegistro");
-const botonRegistrar = document.getElementById("btnRegistrar");
+// Dirección de la API publicada en Railway
+const API_URL = "https://tecnologi-production.up.railway.app/api/usuarios";
 
-formulario.addEventListener("submit", async (evento) => {
-    evento.preventDefault();
+formulario.addEventListener("submit", async function(event) {
+    event.preventDefault();
 
-    mensaje.textContent = "Registrando cliente...";
-    botonRegistrar.disabled = true;
+    const nombre = document.getElementById("nombre").value.trim();
+    const apellido = document.getElementById("apellido").value.trim();
+    const correo = document.getElementById("correo").value.trim();
+    const contrasena = document.getElementById("contrasena").value;
+    const confirmarContrasena =
+        document.getElementById("confirmarContrasena").value;
 
-    const cliente = {
-        nombre: document.getElementById("nombre").value.trim(),
-        apellido: document.getElementById("apellido").value.trim(),
-        documento: document.getElementById("documento").value.trim(),
-        telefono: document.getElementById("telefono").value.trim(),
-        correo: document.getElementById("correo").value.trim(),
-        direccion: document.getElementById("direccion").value.trim()
+    if (!nombre || !apellido || !correo || !contrasena) {
+        mostrarMensaje("Completa todos los campos.", "error");
+        return;
+    }
+
+    if (contrasena !== confirmarContrasena) {
+        mostrarMensaje("Las contraseñas no coinciden.", "error");
+        return;
+    }
+
+    const usuario = {
+        nombre: nombre,
+        apellido: apellido,
+        correo: correo,
+        contrasena: contrasena
     };
 
+    botonRegistro.disabled = true;
+    botonRegistro.textContent = "Registrando...";
+
     try {
-        const respuesta = await fetch(API_CLIENTES, {
+        const respuesta = await fetch(API_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(cliente)
+            body: JSON.stringify(usuario)
         });
 
         const texto = await respuesta.text();
 
-        let resultado = null;
-
+        let datos = {};
         try {
-            resultado = texto ? JSON.parse(texto) : null;
+            datos = texto ? JSON.parse(texto) : {};
         } catch {
-            resultado = null;
+            datos = {};
         }
 
-        if (!respuesta.ok) {
-            const errores = resultado && typeof resultado === "object"
-                ? Object.values(resultado).join(" ")
-                : "";
+        if (respuesta.ok) {
+            mostrarMensaje(
+                "¡Registro exitoso! El usuario fue registrado correctamente.",
+                "exito"
+            );
 
-            throw new Error(
-                errores || `No se pudo registrar el cliente (HTTP ${respuesta.status}).`
+            formulario.reset();
+
+        } else {
+            console.error("Respuesta del servidor:", texto);
+
+            mostrarMensaje(
+                datos.message ||
+                datos.mensaje ||
+                "No se pudo registrar el usuario. Verifica los datos.",
+                "error"
             );
         }
 
-        mensaje.textContent =
-            `Cliente registrado correctamente. ID: ${resultado?.id ?? "asignado"}`;
-
-        mensaje.classList.add("mensaje-exito");
-        formulario.reset();
-
-        setTimeout(() => {
-            window.location.href = "clientes.html";
-        }, 1500);
-
     } catch (error) {
-        console.error("Error al registrar cliente:", error);
+        console.error("Error de conexión:", error);
 
-        mensaje.textContent =
-            error.message.includes("Failed to fetch")
-                ? "No se pudo conectar con la API. Verifica que Spring Boot esté iniciado y que CORS esté configurado."
-                : error.message;
+        mostrarMensaje(
+            "No se pudo conectar con el servidor. Verifica la API y su configuración.",
+            "error"
+        );
 
-        mensaje.classList.remove("mensaje-exito");
     } finally {
-        botonRegistrar.disabled = false;
+        botonRegistro.disabled = false;
+        botonRegistro.textContent = "Crear Cuenta";
     }
 });
+
+function mostrarMensaje(texto, tipo) {
+    mensaje.textContent = texto;
+    mensaje.style.display = "block";
+
+    if (tipo === "exito") {
+        mensaje.style.backgroundColor = "#d1fae5";
+        mensaje.style.color = "#065f46";
+    } else {
+        mensaje.style.backgroundColor = "#fee2e2";
+        mensaje.style.color = "#991b1b";
+    }
+}
